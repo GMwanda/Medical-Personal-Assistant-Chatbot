@@ -43,21 +43,16 @@ def send_message():
         user_input_entry.delete(0, tk.END)
 
 
-# Create the main window
 root = tk.Tk()
 root.title("Chatbot")
 
-# Create the chat history text area
 chat_history = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=60, height=20)
 chat_history.pack(padx=10, pady=10)
 
-# Create the user input entry box
 user_input_entry = tk.Entry(root, width=50)
 user_input_entry.pack(side=tk.LEFT, padx=(10, 0), pady=10)
 
-# Create the send button
 send_button = tk.Button(root, text="Send", command=send_message)
 send_button.pack(side=tk.LEFT, padx=10, pady=10)
 
-# Start the Tkinter event loop
 root.mainloop()
