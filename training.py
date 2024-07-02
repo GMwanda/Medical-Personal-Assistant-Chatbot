@@ -2,17 +2,14 @@ import random
 import json
 import pickle
 import numpy as np
-
 import nltk
 
 nltk.download('punkt')
 nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
-
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Activation, Dropout
+from tensorflow.keras.layers import Dense, Dropout, Input
 from tensorflow.keras.optimizers import SGD
-
 
 lemmatizer = WordNetLemmatizer()
 
@@ -36,7 +33,7 @@ words = sorted(set(words))
 classes = sorted(set(classes))
 
 pickle.dump(words, open('words.pkl', 'wb'))
-pickle.dump(classes, open('classes.pkl', 'wb'))  # Fixed typo, was 'words.pkl' instead of 'classes.pkl'
+pickle.dump(classes, open('classes.pkl', 'wb'))
 
 training = []
 output_empty = [0] * len(classes)
@@ -53,12 +50,10 @@ for document in documents:
     training.append([bag, output_row])
 
 random.shuffle(training)
-training = np.array(training, dtype=object)  # Set dtype to object to handle sequences
+training = np.array(training, dtype=object)
 
 train_x = np.array([item[0] for item in training])
 train_y = np.array([item[1] for item in training])
-
-from tensorflow.keras.layers import Input
 
 model = Sequential()
 model.add(Input(shape=(len(train_x[0]),)))
@@ -68,7 +63,7 @@ model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
 
-sgd = SGD(learning_rate=0.01, momentum=0.9, nesterov=True)  # Updated argument names
+sgd = SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 model.fit(train_x, train_y, epochs=200, batch_size=5, verbose=1)

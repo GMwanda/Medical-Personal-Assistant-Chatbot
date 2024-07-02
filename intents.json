@@ -34,6 +34,161 @@
         "Goodbye!",
         "Talk to you later"
       ]
+    },
+    {
+      "tag": "medical_inquiry",
+      "patterns": [
+        "I have a cough and fever",
+        "What should I do if I have difficulty breathing?",
+        "My child has a high fever and is fatigued",
+        "What are the symptoms of influenza?",
+        "Can you tell me about common cold symptoms?"
+      ],
+      "responses": [
+        "Based on the symptoms you provided, it might be [DISEASE]. Please consult a healthcare professional for a proper diagnosis.",
+        "It seems like you have symptoms of [DISEASE]. I recommend seeing a doctor.",
+        "Can you provide more symptoms? For example, do you have fever, cough, fatigue, or difficulty breathing?"
+      ]
+    },
+    {
+      "tag": "GetDiseaseSymptoms",
+      "patterns": [
+        "What are the symptoms of {Disease}?",
+        "Tell me the symptoms of {Disease}.",
+        "How can I identify {Disease}?",
+        "What signs indicate {Disease}?"
+      ],
+      "slots": [
+        {
+          "name": "Disease",
+          "type": "Disease",
+          "required": true,
+          "prompts": [
+            "Which disease are you asking about?",
+            "Please specify the disease you want to know the symptoms of."
+          ]
+        }
+      ],
+      "responses": [
+        "The symptoms of {Disease} include fever: {Fever}, cough: {Cough}, fatigue: {Fatigue}, and difficulty breathing: {Difficulty Breathing}."
+      ]
+    },
+    {
+      "tag": "CheckDiseaseOutcome",
+      "patterns": [
+        "What is the outcome of having {Disease}?",
+        "Tell me the outcome for {Disease}.",
+        "What is the prognosis for {Disease}?",
+        "What happens if I have {Disease}?"
+      ],
+      "slots": [
+        {
+          "name": "Disease",
+          "type": "Disease",
+          "required": true,
+          "prompts": [
+            "Which disease's outcome are you inquiring about?",
+            "Please specify the disease outcome you want to know."
+          ]
+        }
+      ],
+      "responses": [
+        "The outcome variable for {Disease} is {Outcome Variable}."
+      ]
+    },
+    {
+      "tag": "CheckDemographicData",
+      "patterns": [
+        "What is the typical demographic for {Disease}?",
+        "Tell me the age and gender distribution for {Disease}.",
+        "Who is most affected by {Disease}?",
+        "What is the common demographic for {Disease}?"
+      ],
+      "slots": [
+        {
+          "name": "Disease",
+          "type": "Disease",
+          "required": true,
+          "prompts": [
+            "Which disease's demographic data are you interested in?",
+            "Please specify the disease you want demographic information for."
+          ]
+        }
+      ],
+      "responses": [
+        "{Disease} typically affects individuals of age {Age} and gender {Gender}."
+      ]
+    },
+    {
+      "tag": "CheckHealthMetrics",
+      "patterns": [
+        "What are the blood pressure and cholesterol levels for {Disease}?",
+        "Tell me the health metrics for {Disease}.",
+        "What is the blood pressure like for {Disease}?",
+        "What is the cholesterol level for {Disease}?"
+      ],
+      "slots": [
+        {
+          "name": "Disease",
+          "type": "Disease",
+          "required": true,
+          "prompts": [
+            "Which disease's health metrics are you inquiring about?",
+            "Please specify the disease you want health metrics for."
+          ]
+        }
+      ],
+      "responses": [
+        "For {Disease}, the blood pressure is {Blood Pressure} and the cholesterol level is {Cholesterol Level}."
+      ]
+    },
+    {
+      "tag": "DiseaseInfo",
+      "patterns": [
+        "What is Influenza?",
+        "Can you provide information on Influenza?",
+        "Details about Influenza."
+      ],
+      "responses": [
+        "Influenza is a viral infection that attacks your respiratory system. Common symptoms include fever, cough, fatigue, and difficulty breathing. Can you provide more symptoms to help me assist you better? For example, do you have fever, cough, fatigue, or difficulty breathing?"
+      ],
+      "context": "asking_influenza_symptoms"
+    },
+    {
+      "tag": "InfluenzaSymptomsDetails",
+      "patterns": [
+        "I have fever and cough",
+        "I am experiencing fatigue and difficulty breathing",
+        "I have all the symptoms mentioned"
+      ],
+      "responses": [
+        "Thank you for providing more details. Based on the symptoms you mentioned, it seems like you might be experiencing Influenza. It is important to consult a healthcare professional for a proper diagnosis and treatment."
+      ],
+      "contextFilter": "asking_influenza_symptoms"
+    },
+    {
+      "tag": "DiseaseInfoAsthma",
+      "patterns": [
+        "What is Asthma?",
+        "Can you provide information on Asthma?",
+        "Details about Asthma."
+      ],
+      "responses": [
+        "Asthma is a condition in which your airways narrow and swell and may produce extra mucus. Common symptoms include shortness of breath, chest tightness or pain, and coughing. Can you provide more symptoms to help me assist you better?"
+      ],
+      "context": "asking_asthma_symptoms"
+    },
+    {
+      "tag": "AsthmaSymptomsDetails",
+      "patterns": [
+        "I have shortness of breath and chest tightness",
+        "I am experiencing coughing and difficulty breathing",
+        "I have all the symptoms mentioned"
+      ],
+      "responses": [
+        "Thank you for providing more details. Based on the symptoms you mentioned, it seems like you might be experiencing Asthma. It is important to consult a healthcare professional for a proper diagnosis and treatment."
+      ],
+      "contextFilter": "asking_asthma_symptoms"
     }
   ]
 }
