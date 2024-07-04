@@ -1,4 +1,4 @@
-# Medical Personal Assistant 
+# Medical Personal Assistant Chatbot
 
 This project is a medical personal assistant chatbot built using TensorFlow, NLTK, and Flask. The chatbot is trained to recognize various intents and provide appropriate responses. The user interface is a simple web-based UI created with HTML, CSS, and JavaScript.
 
